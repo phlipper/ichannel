@@ -11,11 +11,33 @@ __OVERVIEW__
 
 __DESCRIPTION__
 
-A modern and easy to use interprocess communication(IPC) primitive.
-Ruby objects can be easily transported between a parent process & its 
-subprocesses. The serialization options are flexible: any serializer that 
-implements `#dump` & `#load` can be used -- this covers Marshal, YAML, & JSON 
-out of the box. 
+A modern and easy to use interprocess communication(IPC) primitive. The basic 
+premise is that you can "put" and "get" Ruby objects to/from a channel. This
+works across any Ruby process & its subprocesses, though, which is why it can 
+be useful.
+
+__SERIALIZERS__
+
+To send Ruby objects between processes they have to be serialized, and the
+number of options open to you is vast because any object that implements `.dump`
+and `.load` can be used to serialize a Ruby object. Marshal, JSON, & YAML are 
+supported out of the box but writing a wrapper around any serializer is a
+minimal amount of work.
+
+For example, here is a MsgPack serializer you could use:
+
+    require 'ichannel'
+    require 'msgpack'
+    serializer = Class.new do
+      def self.dump(msg)
+        MessagePack.pack msg
+      end
+
+      def self.load(msg)
+        MessagePack.unpack msg
+      end
+    end
+    channel = IChannel.new serializer
 
 __EXAMPLES__
 
