@@ -12,10 +12,14 @@ class IChannel
   #
   # Close the channel.
   #
-  # @return [void]
+  # @raise [IOError]
+  #   When the channel is closed already.
   #
+  # @return [Boolean]
+  #   Returns true(-ish) when the channel is closed successfully.
+  #  
   def close
-    [@reader.close,@writer.close]
+    [@reader.close, @writer.close]
   end
 
   #
