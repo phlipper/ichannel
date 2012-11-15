@@ -12,32 +12,41 @@ __OVERVIEW__
 __DESCRIPTION__
 
 Provides a modern and easy to use interprocess communication(IPC) primitive.
-It could be used to transport Ruby objects between Ruby processes running on the 
-same machine, and the serialization options are flexible: any serializer that 
+It can be used to transport Ruby objects between Ruby processes running on the 
+same machine. The serialization options are flexible: any serializer that 
 implements `#dump` & `#load` can be used -- this covers Marshal, YAML, & JSON 
-out of the box but not msgpack, although you could wrap msgpack in an interface 
-that implements dump & load.
-
+out of the box but not MsgPack -- although you could easily write a wrapper 
+around msgpack.
 
 __EXAMPLES__
 
 __1.__
 
-  channel = IChannel.new Marshal
-  channel.put 'hello'
-  channel.put 'goodbye'
-  pid = fork do 
-    channel.get # => 'hello'
-    channel.get # => 'goodbye'
-  end
-  Process.wait pid
+The first example shows off how you'd pass Ruby objects through a channel.
+The serializer of choice is `Marshal` but it could just as easily be `JSON` or
+`YAML`.
+
+    channel = IChannel.new Marshal
+    channel.put 'hello'
+    channel.put 'goodbye'
+    pid = fork do 
+      channel.get # => 'hello'
+      channel.get # => 'goodbye'
+    end
+    Process.wait pid
 
 __REAL WORLD EXAMPLES__
  
  I am using IChannel in a couple of my own personal projects:
 
- - [IProcess](https://github.com/robgleeson/iprocess)
+ - [IProcess](https://github.com/robgleeson/iprocess)  
+    Provides a number of abstractions on top of spawning subprocesses and 
+    interprocess communication. IChannel was born inside IProcess but later 
+    extracted into its own project when I realised it could be useful on its
+    own.
+
  - [XPool](https://github.com/robgleeson/xpool)  
+    A UNIX(X) Process Pool.
 
 __PLATFORM SUPPORT__
 
