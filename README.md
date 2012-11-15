@@ -11,12 +11,11 @@ __OVERVIEW__
 
 __DESCRIPTION__
 
-Provides a modern and easy to use interprocess communication(IPC) primitive.
-It can be used to transport Ruby objects between Ruby processes running on the 
-same machine. The serialization options are flexible: any serializer that 
+A modern and easy to use interprocess communication(IPC) primitive.
+Ruby objects can be easily transported between a parent process & its 
+subprocesses. The serialization options are flexible: any serializer that 
 implements `#dump` & `#load` can be used -- this covers Marshal, YAML, & JSON 
-out of the box but not MsgPack -- although you could easily write a wrapper 
-around msgpack.
+out of the box. 
 
 __EXAMPLES__
 

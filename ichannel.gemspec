@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.version       = IChannel::VERSION
   gem.authors       = ["Robert Gleeson"]
   gem.email         = ["rob@flowof.info"]
-  gem.description   = %q{A simple and modern interprocess communication 
+  gem.description   = %q{A modern and easy-to-use interprocess communication 
     primitive.}
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/robgleeson/ichannel"
