@@ -5,7 +5,9 @@ class IChannelTest < Test::Unit::TestCase
   end
 
   def teardown
-    @channel.close
+    if @channel.open?
+      @channel.close
+    end
   end
 
   def test_put_and_get 
