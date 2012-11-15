@@ -1,0 +1,9 @@
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - ruby-head
+  # UNIXSocket#recvmsg iz not implemented on Rubinius yet.
+  # - rbx-19mode
+
+notifications:
+  email: true 
