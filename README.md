@@ -11,10 +11,15 @@ __OVERVIEW__
 
 __DESCRIPTION__
 
-A modern and easy to use interprocess communication(IPC) primitive. The basic 
-premise is that you can "put" and "get" Ruby objects to/from a channel. This
-works across any Ruby process & its subprocesses, though, which is why it can 
-be useful.
+A modern, flexible & easy to use interprocess communication(IPC) primitive. The 
+basic premise is that you can "put" and "get" Ruby objects to/from a channel. 
+This works across any Ruby process & its subprocesses, though, which is why it 
+can be useful. You could describe putting and getting objects from the channel
+as sending messages across the channel but the message can be (almost) any Ruby 
+object if you are using Marshal. JSON should be faster but it has far fewer 
+representations of native Ruby objects although if you are message passing 
+a Hash object works very well.
+
 
 __SERIALIZERS__
 
