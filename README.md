@@ -18,13 +18,12 @@ be useful.
 
 __SERIALIZERS__
 
-To send Ruby objects between processes they have to be serialized, and the
-number of options open to you is vast because any object that implements `.dump`
-and `.load` can be used to serialize a Ruby object. Marshal, JSON, & YAML are 
-supported out of the box but writing a wrapper around any serializer is a
-minimal amount of work.
+To send Ruby objects between processes they have to be serialized, but on the
+bright side the number of serializers to choose from is vast. Marshal, JSON, & 
+YAML are supported out of the box to name a few but adding support for other 
+serializers is a trivial amount of work.
 
-For example, here is a MsgPack serializer you could use:
+For example, here is a MessagePack serializer you could use:
 
     require 'ichannel'
     require 'msgpack'
