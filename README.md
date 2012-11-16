@@ -14,7 +14,7 @@ __DESCRIPTION__
 A modern, flexible & easy to use interprocess communication(IPC) primitive. The 
 basic premise is that you can "put" and "get" Ruby objects to/from a channel. 
 This works across any Ruby process & its subprocesses, though, which is why it 
-can be useful. You could describe putting and getting objects from the channel
+can be useful. You could describe putting and getting objects to/from the channel
 as message passing but the message could potentially be any Ruby object, 
 although I think sending small messages(as a Hash) works very well for most 
 scenarios. You have the potential to serialize any object that `Marshal` can 
