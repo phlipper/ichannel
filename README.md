@@ -38,6 +38,9 @@ For example, here is a MessagePack serializer you could use:
     end
     channel = IChannel.new serializer
 
+As you can see above as long as the serializer responds to `.dump` & `.load` it 
+can be passed as a serializer to IChannel.
+
 __EXAMPLES__
 
 __1.__
