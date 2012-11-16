@@ -29,18 +29,20 @@ serializers is a trivial amount of work.
 
 For example, here is a MessagePack serializer you could use:
 
-    require 'ichannel'
-    require 'msgpack'
-    serializer = Class.new do
-      def self.dump(msg)
-        MessagePack.pack msg
-      end
+```ruby
+require 'ichannel'
+require 'msgpack'
+serializer = Class.new do
+  def self.dump(msg)
+    MessagePack.pack msg
+  end
 
-      def self.load(msg)
-        MessagePack.unpack msg
-      end
-    end
-    channel = IChannel.new serializer
+  def self.load(msg)
+    MessagePack.unpack msg
+  end
+end
+channel = IChannel.new serializer
+```
 
 As you can see above as long as the serializer responds to `.dump` & `.load` it 
 can be passed as a serializer to IChannel.
@@ -53,14 +55,16 @@ The first example shows off how you'd pass Ruby objects through a channel.
 The serializer of choice is `Marshal` but it could just as easily be `JSON` or
 `YAML`.
 
-    channel = IChannel.new Marshal
-    channel.put 'hello'
-    channel.put 'goodbye'
-    pid = fork do 
-      channel.get # => 'hello'
-      channel.get # => 'goodbye'
-    end
-    Process.wait pid
+```ruby
+channel = IChannel.new Marshal
+channel.put 'hello'
+channel.put 'goodbye'
+pid = fork do 
+  channel.get # => 'hello'
+  channel.get # => 'goodbye'
+end
+Process.wait pid
+```
 
 __REAL WORLD EXAMPLES__
  
